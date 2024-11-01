@@ -22,6 +22,7 @@ public class User {
     private String city;
     private String phone;
     private String car;
+    private String driverLicense;
 
 
     @NotBlank(message = "Username cannot be blank")

@@ -1,0 +1,40 @@
+### Add a new user
+POST http://localhost:8081/api/users
+Content-Type: application/json
+
+{
+  "firstName": "John",
+  "lastName": "Doe",
+  "city": "New York",
+  "phone": "123-456-7890",
+  "car": "Toyota",
+  "driverLicense": "D1234567",
+  "username": "johndoe",
+  "email": "johndoe@example.com",
+  "password": "password123"
+}
+
+### Update an existing user
+PUT http://localhost:8081/api/users/1
+Content-Type: application/json
+
+{
+  "firstName": "John",
+  "lastName": "Doe",
+  "city": "New York",
+  "phone": "123-456-7890",
+  "car": "Honda",
+  "driverLicense": "D7654321",
+  "username": "johndoe",
+  "email": "johndoe@example.com",
+  "password": "newpassword123"
+}
+
+### Get a user by ID
+GET http://localhost:8081/api/users/1
+
+### Get a user by username
+GET http://localhost:8081/api/users/username/johndoe
+
+### Delete a user
+DELETE http://localhost:8081/api/users/1
