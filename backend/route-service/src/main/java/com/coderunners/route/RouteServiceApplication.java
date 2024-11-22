@@ -1,15 +1,13 @@
-package com.coderunners.authentication;
+package com.coderunners.route;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-public class AuthenticationServiceApplication {
-
+public class RouteServiceApplication {
     public static void main(String[] args) {
-        SpringApplication.run(AuthenticationServiceApplication.class, args);
+        SpringApplication.run(RouteServiceApplication.class, args);
     }
 }

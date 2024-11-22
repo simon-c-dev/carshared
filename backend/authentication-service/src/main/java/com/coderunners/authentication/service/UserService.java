@@ -1,4 +1,3 @@
-// backend/authentication-service/src/main/java/com/coderunners/authentication/service/UserService.java
 package com.coderunners.authentication.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,5 +35,27 @@ public class UserService {
 
     public Optional<User> getUserByUsername(String username) {
         return userRepository.findByUsername(username);
+    }
+
+    public Optional<User> rateUser(Integer id, int rating) {
+        Optional<User> userOptional = userRepository.findById(id);
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            user.setRating(rating);
+            userRepository.save(user);
+            return Optional.of(user);
+        }
+        return Optional.empty();
+    }
+
+    public Optional<User> blockUser(Integer id) {
+        Optional<User> userOptional = userRepository.findById(id);
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            user.setBlocked(true);
+            userRepository.save(user);
+            return Optional.of(user);
+        }
+        return Optional.empty();
     }
 }

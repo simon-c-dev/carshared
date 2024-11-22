@@ -16,11 +16,26 @@ spring:
               - healthInsuranceNumber
             maxAge: 3600
       routes:
+        - id: route-service
+          uri: lb://ROUTE-SERVICE
+          predicates:
+            - Path=/routes
+          filters:
+            - LoggingFilter
+            - RateLimitingFilter
+            - TracingFilter
         - id: authentication-service
           uri: lb://AUTHENTICATION-SERVICE
           predicates:
             - Path=/auth/**
-            - Path=/api/users/**
+          filters:
+            - LoggingFilter
+            - RateLimitingFilter
+            - TracingFilter
+        - id: default-route
+          uri: lb://ROUTE-SERVICE
+          predicates:
+            - Path=/**
           filters:
             - LoggingFilter
             - RateLimitingFilter

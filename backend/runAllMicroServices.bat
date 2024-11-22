@@ -2,7 +2,7 @@
 setlocal enabledelayedexpansion
 
 :: List of microservices directories
-set microservices=eureka-server authentication-service gateway
+set microservices=eureka-server authentication-service route-service gateway
 
 :: Create or overwrite the PID file
 set pid_file=service_pids.txt

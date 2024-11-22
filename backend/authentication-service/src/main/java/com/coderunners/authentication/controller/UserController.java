@@ -10,7 +10,7 @@ import com.coderunners.authentication.service.UserService;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/users")
 public class UserController {
 
     @Autowired
@@ -44,6 +44,18 @@ public class UserController {
     @GetMapping("/username/{username}")
     public ResponseEntity<User> getUserByUsername(@PathVariable String username) {
         Optional<User> user = userService.getUserByUsername(username);
+        return user.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @PostMapping("/rate/{id}")
+    public ResponseEntity<User> rateUser(@PathVariable Integer id, @RequestParam int rating) {
+        Optional<User> user = userService.rateUser(id, rating);
+        return user.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @PostMapping("/block/{id}")
+    public ResponseEntity<User> blockUser(@PathVariable Integer id) {
+        Optional<User> user = userService.blockUser(id);
         return user.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 }
